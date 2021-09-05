@@ -1,0 +1,182 @@
+#include "Triangle_area.h"
+
+int main()
+{
+	setlocale(LC_ALL, "ru");
+	cout << triangle_area(2, 3, 4) << endl;
+	try
+	{
+		cout << triangle_area2(2, 3, 4) << endl;
+		cout << triangle_area3(2, 3, 4) << endl;
+		cout << triangle_area4(2, 3, 4) << endl;
+		cout << triangle_area5(1000, 3, 4) << endl;
+		cout << triangle_area6(2, 3354, 4) << endl;
+	}
+	catch (int)
+	{
+		cout << "Ошибка! Стороны неверны 1" << endl;
+	}
+	catch (invalid_argument error)
+	{
+		cerr << error.what() << endl;
+	}
+	catch (Empty_class)
+	{
+		cerr << "Ошибка! Стороны неверны 4" << endl;
+	}
+	catch (independent_class error)
+	{
+		cerr << error.message << endl;
+	}
+	catch (successor_class error)
+	{
+		cerr << error.what() << endl;
+	}
+}
+
+
+
+#pragma once
+#include<exception>
+#include<iostream>
+using namespace std;
+/**
+* \brief   ласс насследник от стандартного исключени§, дл¤ возврата ошибки
+*/
+class successor_class :public invalid_argument {
+public:
+	explicit successor_class(const string& message);
+
+	/**
+	* \brief деструктор по умолчанию
+	*/
+	~successor_class();
+};
+
+
+
+#include"Successor_class.h"
+successor_class::successor_class(const string& message) :invalid_argument(message) {}
+successor_class::~successor_class() = default;
+
+
+
+#pragma once
+#include<string>
+using namespace std;
+/**
+* \brief Независимый класс с полями, для возврата ошибки
+*/
+class independent_class {
+public:
+	string message;
+	explicit independent_class(const string& message);
+	/**
+	* \brief Деструктор по умолчанию
+	*/
+	~independent_class();
+};
+
+
+
+#include"Independent_class.h" 
+independent_class::independent_class(const string& message) :message(message) {}
+independent_class::~independent_class() = default;
+
+
+
+#pragma once
+/**
+* \brief ѕустой класс дл¤ возврата ошибки
+*/
+class Empty_class {};
+
+
+
+#pragma once
+#include<iostream>
+#include<exception>
+#include "Empty_class.h"
+#include "Independent_class.h"
+#include "Successor_class.h"
+
+/**
+* \brief Функция вычисляет площадь треугольника
+*/
+double triangle_area(const double a, const double b, const double c);
+/**
+* \brief Функция вычисляет площадь треугольника спецификатор throw()
+*/
+double triangle_area2(const double a, const double b, const double c);
+/**
+* \brief Функция вычисляет площадь треугольника с конкретной спецификацией с подходящим стандартным исключением
+*/
+double triangle_area3(const double a, const double b, const double c);
+/**
+* \brief Функция вычисляет площадь треугольника со спецификацией с собственным реализованным исключением. (исключение как пустой класс)
+*/
+double triangle_area4(const double a, const double b, const double c);
+/**
+* \brief Функция вычисляет площадь треугольника со спецификацией с собственным реализованным исключением. (исключение как независимый класс с полями-параметрами функции)
+*/
+double triangle_area5(const double a, const double b, const double c);
+/**
+* \brief Функция вычисляет площадь треугольника со спецификацией с собственным реализованным исключением. (исключение как наследник от стандартного исключения с полями)
+*/
+double triangle_area6(const double a, const double b, const double c);
+
+
+
+
+
+
+#include "Triangle_area.h"
+
+double triangle_area(const double a, const double b, const double c)
+{
+	double p = (a + b + c) / 2.0;
+	return sqrt(p * (p - a) * (p - b) * (p - c));
+}
+double triangle_area2(const double a, const double b, const double c)
+{
+	if ((a > 0 && b > 0 && c > 0) && a + b > c && b + c > a && a + c > b)
+	{
+		return triangle_area(a, b, c);
+	}
+	throw 1;
+}
+double triangle_area3(const double a, const double b, const double c)
+{
+	if ((a > 0 && b > 0 && c > 0) && a + b > c && b + c > a && a + c > b)
+	{
+		return triangle_area(a, b, c);
+	}
+	throw invalid_argument{ "Ошибка! Стороны неверны 3" };
+}
+double triangle_area4(const double a, const double b, const double c)
+{
+	if ((a > 0 && b > 0 && c > 0) && a + b > c && b + c > a && a + c > b)
+	{
+		return triangle_area(a, b, c);
+	}
+	throw Empty_class();
+}
+
+double triangle_area5(const double a, const double b, const double c)
+{
+	if ((a > 0 && b > 0 && c > 0) && a + b > c && b + c > a && a + c > b)
+	{
+		return triangle_area(a, b, c);
+	}
+	throw independent_class("Ошибка!Стороны неверны 5");
+}
+
+double triangle_area6(const double a, const double b, const double c)
+{
+	if ((a > 0 && b > 0 && c > 0) && a + b > c && b + c > a && a + c > b)
+	{
+		return triangle_area(a, b, c);
+	}
+	throw successor_class("Ошибка!Стороны неверны 6");
+}
+
