@@ -21,43 +21,43 @@ private:
 	double z;
 public:
 	/**
-	 \brief	Конструктор
+	 \brief	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	 */
 	explicit Vector3D(const double x, const double y, const double z);
 	/**
-	 \brief	Деструктор по умолчанию.
+	 \brief	Р”РµСЃС‚СЂСѓРєС‚РѕСЂ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
 	 */
 	~Vector3D() = default;
 	/**
-	 \brief	Конструктор копирования по умолчанию.
+	 \brief	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РєРѕРїРёСЂРѕРІР°РЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
 	 */
 	Vector3D(const  Vector3D&) = default;
 	/**
-	 \brief	Конструктор присваивания по умолчанию.
+	 \brief	РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ РїСЂРёСЃРІР°РёРІР°РЅРёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ.
 	 */
 	Vector3D& operator=(const  Vector3D&) = default;
 	/**
-	 \brief	Оператор сдвига
+	 \brief	РћРїРµСЂР°С‚РѕСЂ СЃРґРІРёРіР°
 	 */
 	friend ostream& operator<<(ostream& out, Vector3D& vec);
 	/**
-	 \brief	Оператор сложения 
+	 \brief	РћРїРµСЂР°С‚РѕСЂ СЃР»РѕР¶РµРЅРёСЏ 
 	 */
 	Vector3D operator+(const Vector3D& other);
 	/**
-	 \brief	Оператор вычитания 
+	 \brief	РћРїРµСЂР°С‚РѕСЂ РІС‹С‡РёС‚Р°РЅРёСЏ 
 	 */
 	Vector3D operator-(const Vector3D& other);
 	/**
-	 \brief	Скалярное произведение векторов
+	 \brief	РЎРєР°Р»СЏСЂРЅРѕРµ РїСЂРѕРёР·РІРµРґРµРЅРёРµ РІРµРєС‚РѕСЂРѕРІ
 	 */
 	double operator*(const Vector3D& other);
 	/**
-	 \brief	Оператор умножения на число
+	 \brief	РћРїРµСЂР°С‚РѕСЂ СѓРјРЅРѕР¶РµРЅРёСЏ РЅР° С‡РёСЃР»Рѕ
 	 */
 	Vector3D operator*(const double a);
 	/**
-	 \brief	длина вектора
+	 \brief	РґР»РёРЅР° РІРµРєС‚РѕСЂР°
 	 */
 	double get_vector_length() const;
 	/**
@@ -73,15 +73,15 @@ public:
 	 */
 	double get_z()const;
 	/**
-	 \brief	 равно
+	 \brief	 СЂР°РІРЅРѕ
 	 */
 	bool operator==(const Vector3D& other);
 	/**
-	 \brief	 больше
+	 \brief	 Р±РѕР»СЊС€Рµ
 	 */
 	bool operator>(const Vector3D& other);
 	/**
-	 \brief меньше
+	 \brief РјРµРЅСЊС€Рµ
 	 */
 	bool operator<(const Vector3D& other);
 };
